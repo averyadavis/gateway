@@ -1,0 +1,21 @@
+server:
+  -port: 8000
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: sse_route
+        uri: http://localhost:8001/api/
+        predicates:
+        - Path=/api
+      - id: html_route
+        uri: http://localhost:8001
+        predicates:
+        - Path=/**
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
